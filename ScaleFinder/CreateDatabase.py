@@ -1,4 +1,4 @@
-#! /usr/bin/python3.4
+#! /usr/bin/python
 
 #* Nicholas DiBari                                                 *#
 #* CreateDatabase                                                  *#
@@ -13,9 +13,9 @@
 
 import shelve
 
-scaleFile = shelve.open('Scales')
+scaleFile = shelve.open('Scales.db')
 
-# Lists of common scales
+# Lists of Major scales
 AMaj = ['A Major' , 'B Minor' , 'C# Minor' , 'D Major' , 'E Major' , 'F# Minor' , 'G# Diminished']
 BMaj = ['B Major' , 'C# Minor' , 'D# Minor' , 'E Major' , 'F# Major' , 'G# Minor' , 'A# Diminsihed']
 CMaj = ['C Major' , 'D Minor' , 'E Minor' , 'F Major' , 'G Major' , 'A Minor' , 'B Diminished']
@@ -30,10 +30,11 @@ MASTER = [Major]
 
 
 #Write Scales to database file
-for a in range(len(MASTER)):
-    for b in range(len(MASTER[a])):
-        print("Adding the " + str(MASTER[a][b][0]) + " scale")
-        scaleFile["Scale: " + str(b)] = MASTER[a][b]
+for scale in MASTER:
+    for key in scale:
+        print('Adding the {} scale'.format(key[0]))
+        db_key = 'Scale {}'.format(key[0])
+        scaleFile[db_key] = key
       
-
+scaleFile.close()
 print("Done!")
