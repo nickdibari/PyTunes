@@ -16,7 +16,7 @@ import sys
 import shelve
 
 #Creates database file of artists to be entered
-artistFile = shelve.open('Entries')
+artistFile = shelve.open('Entries.db')
 
 #Initializes prev_entries to the list value of the contents of artistFile
 prev_entries = list(artistFile.values())
